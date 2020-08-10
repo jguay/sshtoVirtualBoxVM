@@ -163,15 +163,12 @@ function clearKnownHostEntry () {
 		echo "ERROR: clearKnownHostEntry missing one argument : hostname"
 	else
 		if [[ -f "$HOME/.ssh/known_hosts" ]]; then
-			# not working via docker volume - might have to check for OS version for syntax, using MAC+BSD syntax meanwhile
-			# docker run -v "$HOME/.ssh:/workdir" --rm julienguay/yq:2.3.0 "/bin/bash -c \"sed -i '' '/${smp_ip}/d' /workdir/known_hosts\""
 			sed -i '' "/${1}/d" $HOME/.ssh/known_hosts
 		fi
 	fi
 }
 
 function sshConnect () {
-	#any argument will cause the command to ssh using default password - example `./sshpassSMP.sh init`
 	if [[ -z "$1" ]] || [[ -z "$2" ]]; then
 		echo "ERROR: sshConnect missing one argument, expected : hostname port"
 	else
