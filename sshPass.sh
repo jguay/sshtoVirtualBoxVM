@@ -199,10 +199,10 @@ function sshConnect () {
   done
 
 function assignSettings () {
-	if [[ ! -z "$username" ]]; then 
+	if [[ -z "$username" ]]; then 
 		username=vagrant
 	fi
-	if [[ ! -z "$password" ]]; then 
+	if [[ -z "$password" ]]; then 
 		password=vagrant
 	fi
 }
